@@ -71,11 +71,11 @@ PIC_OBJS = $(PIC_OBJC) $(PIC_OBJA)
 
 all: static shared
 
-static: example$(EXE) minigzip$(EXE)
+static: example$(EXE)
 
-shared: examplesh$(EXE) minigzipsh$(EXE)
+shared: examplesh$(EXE)
 
-all64: example64$(EXE) minigzip64$(EXE)
+all64: example64$(EXE)
 
 check: test
 

@@ -541,9 +541,13 @@ void test_dict_inflate(compr, comprLen, uncompr, uncomprLen)
  * Usage:  example [output.gz  [input.gz]]
  */
 
+#ifdef Z_SOLO
+int main()
+#else
 int main(argc, argv)
     int argc;
     char *argv[];
+#endif
 {
     Byte *compr, *uncompr;
     uLong comprLen = 10000*sizeof(int); /* don't overflow on MSDOS */
@@ -572,10 +576,7 @@ int main(argc, argv)
         exit(1);
     }
 
-#ifdef Z_SOLO
-    (void)argc;
-    (void)argv;
-#else
+#ifndef Z_SOLO
     test_compress(compr, comprLen, uncompr, uncomprLen);
 
     test_gzio((argc > 1 ? argv[1] : TESTFILE),
